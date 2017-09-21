@@ -45,4 +45,16 @@ class PledgeTest < ActiveSupport::TestCase
     )
   end
 
+  test "pledge must be dollar" do
+    pledge = Pledge.create(
+      project: new_project,
+      user: new_user
+    )
+    pledge.save
+    refute pledge.valid?
+    refute pledge.persisted?
+  end
+
+
+
 end
