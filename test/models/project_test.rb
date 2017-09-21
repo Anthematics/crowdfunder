@@ -40,4 +40,16 @@ class ProjectTest < ActiveSupport::TestCase
     )
   end
 
+  test "project_is_invalid_if_start_date_in_past" do
+    project = build(:project)
+    project.start_date = Date.today - 1
+    assert project.invalid?
+  end
+
+  test "goal must be positive" do
+    pro = build(:project)
+    pro.goal = -1
+     assert pro.invalid?
+   end
+
 end
