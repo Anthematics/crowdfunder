@@ -13,4 +13,7 @@ class Project < ActiveRecord::Base
       errors.add(:start_date, "can't be in past")
     end
   end
+
+
+
 end
