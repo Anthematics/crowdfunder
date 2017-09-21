@@ -11,4 +11,13 @@ class Project < ApplicationRecord
 		return @time_to_deadline
 	end
 
+
+	def present_start_date
+		if start_date < Date.today
+			errors.add(:start_date, "can't be in past")
+		end
+	end
+
+
+
 end
