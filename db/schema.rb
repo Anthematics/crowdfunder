@@ -12,55 +12,55 @@
 
 ActiveRecord::Schema.define(version: 20170918194551) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+	# These are extensions that must be enabled in order to support this database
+	enable_extension "plpgsql"
 
-  create_table "cats", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+	create_table "cats", force: :cascade do |t|
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+	end
 
-  create_table "pledges", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.float "dollar_amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "project_id"
-    t.index ["project_id"], name: "index_pledges_on_project_id"
-    t.index ["user_id"], name: "index_pledges_on_user_id"
-  end
+	create_table "pledges", id: :serial, force: :cascade do |t|
+		t.integer "user_id"
+		t.float "dollar_amount"
+		t.datetime "created_at", null: false
+		t.datetime "updated_at", null: false
+		t.bigint "project_id"
+		t.index ["project_id"], name: "index_pledges_on_project_id"
+		t.index ["user_id"], name: "index_pledges_on_user_id"
+	end
 
-  create_table "projects", id: :serial, force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.integer "goal"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string "image"
-    t.integer "user_id"
-  end
+	create_table "projects", id: :serial, force: :cascade do |t|
+		t.string "title"
+		t.text "description"
+		t.integer "goal"
+		t.datetime "start_date"
+		t.datetime "end_date"
+		t.datetime "created_at"
+		t.datetime "updated_at"
+		t.string "image"
+		t.integer "user_id"
+	end
 
-  create_table "rewards", id: :serial, force: :cascade do |t|
-    t.integer "project_id"
-    t.string "description"
-    t.float "dollar_amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+	create_table "rewards", id: :serial, force: :cascade do |t|
+		t.integer "project_id"
+		t.string "description"
+		t.float "dollar_amount"
+		t.datetime "created_at"
+		t.datetime "updated_at"
+	end
 
-  create_table "users", id: :serial, force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean "admin", default: false
-    t.string "password_digest"
-    t.index ["email"], name: "index_users_on_email", unique: true
-  end
+	create_table "users", id: :serial, force: :cascade do |t|
+		t.string "first_name"
+		t.string "last_name"
+		t.string "email", null: false
+		t.datetime "created_at"
+		t.datetime "updated_at"
+		t.boolean "admin", default: false
+		t.string "password_digest"
+		t.index ["email"], name: "index_users_on_email", unique: true
+	end
 
-  add_foreign_key "pledges", "projects"
-  add_foreign_key "pledges", "users"
+	add_foreign_key "pledges", "projects"
+	add_foreign_key "pledges", "users"
 end
